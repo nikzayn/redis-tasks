@@ -1,0 +1,60 @@
+<html>
+   <head> 
+       <title>Redis Tasks</title>
+       <link rel = "stylesheet" href="https://bootswatch.com/cerulean/bootstrap.min.css"> 
+    <style>
+        .del:checked + span {
+            color: red;
+        }
+
+        .tasks-list{
+            list-style: none;
+        }
+    </style>
+    </head>
+    <body>
+    <form method="post" action="/tasks/add">
+        <label>Add Task</label>
+        <input type = "text" name="task" placeholder="Add some tasks"/>
+        <input type = "submit" value="Submit"/>
+    </form>
+    <%= title %>
+
+    <form method="post" action="/tasks/delete">
+    <ul class="tasks-list">
+    <% tasks.forEach(function(task){ %>
+        <li>
+            <label>
+                <input type="checkbox" name="tasks" class="del" value="<%= task %>">
+                    <span><%= task %></span>
+            </label>
+        </li>
+    <% }) %>
+    </ul>
+    <input type="submit" value="Remove">
+    </form>
+
+    <h3>Next Business Call</h3>
+    Name: <%= call.name %><br>
+    Company: <%= call.company %><br>
+    Phone: <%= call.phone %><br>
+    Time: <%= call.time %><br>
+
+    <h3>Edit Next Call</h3>
+    <form method="post" action="/call/add">
+        <label>Contact Name</label><br>
+        <input type="text" name="name" placeholder="Task Name">
+        <br><br>
+        <label>Company</label><br>
+        <input type="text" name="company" placeholder="Company">
+        <br><br>
+        <label>Phone</label><br>
+        <input type="text" name="phone" placeholder="Phone number">
+        <br><br>
+        <label>Day&Time</label><br>
+        <input type="text" name="time" placeholder="day and time">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+    </body>
+</html>
